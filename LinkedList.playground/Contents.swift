@@ -43,6 +43,7 @@ class List<T>: CustomStringConvertible {
     
     func add(item: T) {
         let node = ListNode(item)
+        if first == nil { first = node }
         last?.next = node
         last = node
     }
@@ -64,3 +65,6 @@ class List<T>: CustomStringConvertible {
 
 let list = List(array: [1, 2, 3, 4, 5])
 list.rotate()
+let emptyList = List<Int>()
+emptyList.add(item: 1)
+emptyList.add(item: 2)
