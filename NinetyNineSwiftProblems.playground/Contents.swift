@@ -58,14 +58,36 @@ list?.recursiveDescription
 
 extension List {
     var last: T? {
-        guard var next = self.next else { return self.value }
+        guard var current = self.next else { return self.value }
 
-        while let list = next.next {
-            next = list
+        while let next = current.next {
+            current = next
         }
-        return next.value
+        return current.value
     }
 }
 
 list?.last
 
+// P02 (*) Find the last but one element of a linked list.
+/*
+ Example
+ List(1, 1, 2, 3, 5, 8).pennultimate
+
+ Result
+ 5
+ */
+
+extension List {
+    var pennultimate: T? {
+        guard var current = self.next else { return nil }
+
+        var previous = self
+        while let next = current.next {
+            previous = current
+            current = next
+        }
+        return previous.value
+    }
+}
+list?.pennultimate
