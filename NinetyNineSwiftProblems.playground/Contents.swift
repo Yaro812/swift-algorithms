@@ -91,3 +91,22 @@ extension List {
     }
 }
 list?.pennultimate
+
+// P03 (*) Find the Kth element of a linked list.
+/*
+ Example
+ let list = List(1, 1, 2, 3, 5, 8)
+ list[2]
+
+ Result
+ 2
+ */
+
+extension List {
+    subscript(index: Int) -> T? {
+        guard index != 0  else { return value }
+
+        return next?[index - 1]
+    }
+}
+list?[2]
