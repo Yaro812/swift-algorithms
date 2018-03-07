@@ -1,4 +1,4 @@
-//: Playground - noun: a place where people can play
+//: http://www.enekoalonso.com/projects/99-swift-problems/
 
 import UIKit
 
@@ -110,3 +110,24 @@ extension List {
     }
 }
 list?[2]
+
+// P04 (*) Find the number of elements of a linked list.
+/*
+ Example
+ List(1, 1, 2, 3, 5, 8).length
+
+ Result
+ 6
+ */
+extension List {
+    var length: Int {
+        var count = 1
+        var current: List? = self
+        while current?.next != nil {
+            count += 1
+            current = current?.next
+        }
+        return count
+    }
+}
+list?.length
