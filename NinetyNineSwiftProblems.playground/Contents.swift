@@ -131,3 +131,27 @@ extension List {
     }
 }
 list?.length
+
+// P05 (*) Reverse a linked list.
+/*
+ Example
+ List(1, 1, 2, 3, 5, 8).reverse()
+
+ Result
+ List(8, 5, 3, 2, 1, 1)
+ */
+extension List {
+    func reverse() -> List {
+        var current = self
+        var next: List? = nil
+        while let previous = current.next {
+            current.next = next
+            next = current
+            current = previous
+        }
+        current.next = next
+        return current
+    }
+}
+let reversed = list?.reverse()
+reversed?.recursiveDescription
