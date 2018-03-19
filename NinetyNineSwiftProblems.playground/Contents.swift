@@ -155,3 +155,51 @@ extension List {
 }
 let reversed = list?.reverse()
 reversed?.recursiveDescription
+
+// P06 (*) Find out whether a linked list is a palindrome.
+/*
+ Example
+ List(1, 2, 3, 2, 1).isPalindrome()
+
+ Result
+ true
+ */
+extension List where T: Equatable {
+    var values: [T] {
+        var result: [T] = []
+        var current = self
+        while let next = current.next {
+            result.append(current.value)
+            current = next
+        }
+        result.append(current.value)
+        return result
+    }
+
+    /// - Warning: Memory cost O(n)
+    var isPalindrome: Bool {
+        let values = self.values
+        for idx in 0...length / 2 where values[idx] != values[values.count - 1 - idx] {
+                return false
+        }
+        return true
+    }
+
+    /// - Warning: Complexity cost O(n^2)
+    var isPalindrome2: Bool {
+        let count = self.length
+        for idx in 0...count / 2 {
+            guard let left = self[idx], let right = self[count - 1 - idx], left == right else {
+                return false
+            }
+        }
+        return true
+    }
+}
+let notPalindrome = List(values: [1, 3, 2, 2, 1])
+notPalindrome?.isPalindrome
+notPalindrome?.isPalindrome2
+let palindrome = List(values: [1, 2, 3, 2, 1])
+palindrome?.isPalindrome
+palindrome?.isPalindrome2
+
